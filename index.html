@@ -1,0 +1,228 @@
+<!DOCTYPE html> 
+<html lang="ro"> 
+<head>
+    <meta charset="UTF-8">
+    <title>Student - Szekely Elisabeth Mirjam</title>
+    <style>
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        img {
+            border-radius: 10px;
+            border: 4px solid #333;
+            transition: all 0.5s ease;
+        }
+
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 60%;
+        }
+
+        th, td {
+            border: 1px solid #444;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #ddd;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            background-color: #6a5acd;
+            color: white;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #483d8b;
+        }
+
+        /* 🔹 Stil pentru secțiunea cu anul nașterii */
+        section#nastere {
+            margin-top: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #6a5acd;
+            transition: color 0.4s ease, transform 0.4s ease;
+        }
+
+        section#nastere:hover {
+            color: #ff4500;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body> 
+    <a href="Cuprins.html">Cuprins</a>
+
+    <h1 id="nume">Nume: Szekely</h1>
+    <h2 id="prenume">Prenume: Elisabeth Mirjam</h2>
+    <h3 id="email">Email: Szekely.Gy.Elisabeth@student.utcluj.ro</h3>	
+
+    <img id="profil" src="images/poza.jpg" width="400" height="250" alt="Poza profil">
+
+    <!-- 🔹 Element HTML5 nou: anul nașterii -->
+    <section id="nastere" onmouseover="afiseazaVarsta()" onmouseout="revinoLaAn()">An naștere: 2006</section>
+
+    <h4 id="educatieTitlu">Așteptări legate de educație:</h4> 
+    <p id="educatieText">Terminarea facultății</p>
+
+    <table>
+        <tr>
+            <th>Disciplina</th>
+            <th>An</th>
+            <th>Link</th>
+        </tr>
+        <tr>
+            <td>Informatica Aplicata</td>
+            <td>1</td>
+            <td><a href="https://etti.utcluj.ro/files/Acasa/Site/FiseDisciplina/EaRo/06.pdf">Link 1</a></td>
+        </tr>
+        <tr>
+            <td>Bazele Electrotehnicii 1</td>
+            <td>1</td>
+            <td><a href="https://etti.utcluj.ro/files/Acasa/Site/FiseDisciplina/EaRo/13.pdf">Link 2</a></td>
+        </tr>
+        <tr>
+            <td>Tehnici CAD</td>
+            <td>2</td>
+            <td><a href="https://etti.utcluj.ro/files/Acasa/Site/FiseDisciplina/EaRo/28.pdf">Link 3</a></td>
+        </tr>
+        <tr>
+            <td>Electronică de putere</td>
+            <td>3</td>
+            <td><a href="https://etti.utcluj.ro/files/Acasa/Site/FiseDisciplina/EaRo/36.pdf">Link 4</a></td>
+        </tr>
+        <tr>
+            <td>Sisteme fuzzy</td>
+            <td>4</td>
+            <td><a href="https://etti.utcluj.ro/files/Acasa/Site/FiseDisciplina/EaRo/55_20.pdf">Link 5</a></td>
+        </tr>
+    </table>
+    
+    <h5 id="hobbyTitlu">Hobby-uri</h5>
+    <ul id="hobbyList">
+        <li>Desenat</li>
+        <li>Cântat la chitară</li>
+        <li>Gătit</li>
+    </ul>
+
+    <button id="btnViata">Altă viață</button>
+
+    <script>
+        let altaViata = false;
+
+        const nume = document.getElementById("nume");
+        const prenume = document.getElementById("prenume");
+        const educatieTitlu = document.getElementById("educatieTitlu");
+        const educatieText = document.getElementById("educatieText");
+        const hobbyTitlu = document.getElementById("hobbyTitlu");
+        const hobbyList = document.getElementById("hobbyList");
+        const profil = document.getElementById("profil");
+        const buton = document.getElementById("btnViata");
+
+        const viataInitiala = {
+            nume: "Nume: Szekely",
+            prenume: "Prenume: Elisabeth Mirjam",
+            educatieTitlu: "Așteptări legate de educație:",
+            educatieText: "Terminarea facultății",
+            hobbyTitlu: "Hobby-uri",
+            hobbyList: `
+                <li>Desenat</li>
+                <li>Cântat la chitară</li>
+                <li>Gătit</li>
+            `,
+            profil: "images/poza.jpg",
+            bgColor: "#f5f5f5",
+            textColor: "#333",
+            imgBorder: "4px solid #333",
+            imgOpacity: "1",
+            imgBorderRadius: "10px"
+        };
+
+        const altaViataData = {
+            nume: "Funcție: Inginer Szekely Elisabeth Mirjam",
+            prenume: "Locul de muncă: BOSCH",
+            educatieTitlu: "Experiențe profesionale și realizări:",
+            educatieText: "Am participat la proiecte internaționale și am dezvoltat aplicații web pentru companii IT de top.",
+            hobbyTitlu: "Noi pasiuni",
+            hobbyList: `
+                <li>Dezvoltare de aplicații AI</li>
+                <li>Participare la semi-maratoane</li>
+                <li>Voluntariat în educație digitală</li>
+            `,
+            profil: "images/poza1.png",
+            bgColor: "#222",
+            textColor: "#f5f5f5",
+            imgBorder: "6px solid #00ffff",
+            imgOpacity: "0.85",
+            imgBorderRadius: "50%"
+        };
+
+        // 🔹 Funcția butonului „Altă viață”
+        buton.addEventListener("click", function() {
+            if (!altaViata) {
+                nume.textContent = altaViataData.nume;
+                prenume.textContent = altaViataData.prenume;
+                educatieTitlu.textContent = altaViataData.educatieTitlu;
+                educatieText.textContent = altaViataData.educatieText;
+                hobbyTitlu.textContent = altaViataData.hobbyTitlu;
+                hobbyList.innerHTML = altaViataData.hobbyList;
+                profil.src = altaViataData.profil;
+                document.body.style.backgroundColor = altaViataData.bgColor;
+                document.body.style.color = altaViataData.textColor;
+                profil.style.border = altaViataData.imgBorder;
+                profil.style.opacity = altaViataData.imgOpacity;
+                profil.style.borderRadius = altaViataData.imgBorderRadius;
+                buton.textContent = "Viața mea";
+                alert("Activati alta viata?");
+            } else {
+                nume.textContent = viataInitiala.nume;
+                prenume.textContent = viataInitiala.prenume;
+                educatieTitlu.textContent = viataInitiala.educatieTitlu;
+                educatieText.textContent = viataInitiala.educatieText;
+                hobbyTitlu.textContent = viataInitiala.hobbyTitlu;
+                hobbyList.innerHTML = viataInitiala.hobbyList;
+                profil.src = viataInitiala.profil;
+                document.body.style.backgroundColor = viataInitiala.bgColor;
+                document.body.style.color = viataInitiala.textColor;
+                profil.style.border = viataInitiala.imgBorder;
+                profil.style.opacity = viataInitiala.imgOpacity;
+                profil.style.borderRadius = viataInitiala.imgBorderRadius;
+                buton.textContent = "Altă viață";
+                alert("Înapoi la cealalta viața");
+            }
+
+            altaViata = !altaViata;
+        });
+
+        // 🔹 Funcțiile pentru anul nașterii și vârstă
+        const nastere = document.getElementById("nastere");
+
+        function afiseazaVarsta() {
+            const anulNasterii = 2006;
+            const anulCurent = new Date().getFullYear();
+            const varsta = anulCurent - anulNasterii;
+            nastere.textContent = "Vârstă: " + varsta + " ani";
+        }
+
+        function revinoLaAn() {
+            nastere.textContent = "An naștere: 2006";
+        }
+    </script>
+</body>
+</html>
